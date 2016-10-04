@@ -3,7 +3,7 @@
 
 	"name" : "Udacity Global Pause",
 	"description" : "Pause Udacity Videos",
-	"version" : "0.0.0001",
+	"version" : "0.0.0.1",
 
 	"background": {
 		"scripts" : ["udacity_pause_background.js"],
