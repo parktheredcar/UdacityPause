@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Udacity Pause Options</title>
+		<!-- <script src="jquery-1.10.2.min.js"></script> -->
+		<script src="options.js"></script>
+		<link href="options.css" rel="stylesheet">
+	</head>
+	<body>
+		<div>
+			<h1>Global Hotkey Config</h1>
+			<div>
+				<p>
+					Developer-set global shortcuts are restricted to CTRL+SHIFT+[0-9], but users can override those global shortcuts with whatever key combination they'd like. 
+				</p>
+				<p>
+					This link will take you directly to Chrome's global shortcut config window.
+				</p>
+
+				<a id="hotkeysConfig" href="chrome://extensions/configureCommands">Configure Global 
+				Hotkeys</a>
+
+			</div>
+		</div>
+		<div>
+			<h1>Seek Duration Config</h1>
+			<div>
+				<p>
+					This setting controls the number of seconds to jump forward/backward when using the seek functionality.
+				</p>
+
+				<h3>Seek Duration</h3>
+				<input id="seekDuration" type="text" />
+				<input id="setSeekDuration" type="submit" value="Set Duration" />
+			</div>
+		</div>
+	</body>
+</html>
+
+

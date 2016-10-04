@@ -37,9 +37,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 		`;
 		runRemoteScript(scriptContent);
 	}else if(request.action === "udacity_pause_forward"){
-		seekUdacity(5);
+		seekUdacity(request.seekDuration);
 	}else if(request.action === "udacity_pause_back"){
-		seekUdacity(-5);
+		seekUdacity(-request.seekDuration);
 	}
 });	
 
