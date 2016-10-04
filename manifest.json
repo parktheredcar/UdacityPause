@@ -3,13 +3,12 @@
 
 	"name" : "Udacity Global Pause",
 	"description" : "Pause Udacity Videos",
-	"version" : "0.1",
+	"version" : "0.0.0001",
 
 	"background": {
 		"scripts" : ["udacity_pause_background.js"],
 		"persistent" : false
 	},
-
 
 	"commands" : {
 		"udacity_pause_back" : {
@@ -44,11 +43,8 @@
 		"128" : "icon128.png"
 	},
 
-
-
 	"content_scripts" : [
 		{
-			///"matches" : ["<all_urls>"],
 			 "matches" : ["*://*.udacity.com/course/viewer/*"],
 			"js" : ["udacity_pause_content.js"],
 			"run_at" : "document_start",
@@ -58,9 +54,6 @@
 
 	"permissions" : [
 		"tabs",
-		// "webRequest",
-		// "webRequestBlocking",
-		// "<all_urls>"
 		"*://*.udacity.com/course/viewer/*"
 	]
 }
