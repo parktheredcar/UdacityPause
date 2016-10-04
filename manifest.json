@@ -1,8 +1,8 @@
 {
 	"manifest_version" : 2,
 
-	"name" : "Udacity Global Pause",
-	"description" : "Pause Udacity Videos",
+	"name" : "Udacity Global Pause Hotkeys",
+	"description" : "Register global hotkeys for pausing and skipping around in udacity videos.",
 	"version" : "0.0.0.1",
 
 	"background": {
