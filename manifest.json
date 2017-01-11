@@ -3,7 +3,7 @@
 
 	"name" : "Udacity Global Pause Hotkeys",
 	"description" : "Register global hotkeys for pausing and skipping around in udacity videos.",
-	"version" : "0.0.0.2",
+	"version" : "0.0.0.3",
 
 	"background": {
 		"scripts" : ["udacity_pause_background.js"],
@@ -31,6 +31,20 @@
 			},
 			"description": "Seek udacity course viewer forward.",
 			"global": true
+		},
+		"udacity_pause_next" : {
+			// "suggested_key" : {
+			// 	"default": "Ctrl+Shift+7"
+			// },
+			"description": "Go to the next morsel.",
+			"global": true
+		},
+		"udacity_pause_prev" : {
+			// "suggested_key" : {
+			// 	"default": "Ctrl+Shift+6"
+			// },
+			"description": "Go to the previous morsel.",
+			"global": true
 		}
 	},
 
@@ -46,16 +60,22 @@
 
 	"content_scripts" : [
 		{
-			 "matches" : ["*://*.udacity.com/course/viewer/*"],
+			 "matches" : ["*://classroom.udacity.com/courses/*"],
 			"js" : ["udacity_pause_content.js"],
+			"run_at" : "document_start"
+		},
+		{
+			"matches" : ["*://www.youtube.com/embed/*"],
+			"js" : ["udacity_pause_youtube_frame_content.js"],
 			"run_at" : "document_start",
 			"all_frames" : true
+
 		}
 	],
 
 	"permissions" : [
 		"tabs",
 		"storage",
-		"*://*.udacity.com/course/viewer/*"
+		"*://classroom.udacity.com/courses/*"
 	]
 }

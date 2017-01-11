@@ -4,7 +4,7 @@ var safeGetYoutubePlayer = `
 	if(YT === null){
 		errMsg = "UdacityPause error: YT is null, something went wrong."
 	}else{
-		var videoFrame = document.querySelector("iframe[data-ng-controller=videoPlayer]");
+		var videoFrame = document.querySelector("div[class^=youtube-player] iframe");
 		if(videoFrame === null){
 			errMsg = "UdacityPause error: videoFrame is null, something went wrong."
 		}else{
@@ -22,35 +22,30 @@ var safeGetYoutubePlayer = `
 `
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-	if(request.action === "udacity_pause_pause"){
-		// console.log("udacity pause");
-		console.log("pausing");
-
-		var scriptContent = `
-			${safeGetYoutubePlayer}
-			var playerState = player.getPlayerState();
-			if(playerState === YT.PlayerState.PAUSED){
-				player.playVideo();
-			}else if(playerState === YT.PlayerState.PLAYING){
-				player.pauseVideo();
-			}
-		`;
-		runRemoteScript(scriptContent);
-	}else if(request.action === "udacity_pause_forward"){
-		seekUdacity(request.seekDuration);
-	}else if(request.action === "udacity_pause_back"){
-		seekUdacity(-request.seekDuration);
+	if(request.action === "udacity_pause_next"){
+		alert("next");
+		document.querySelector("div[class^=_header--next]").click();
+	}else if(request.action === "udacity_pause_prev"){
+		// callAngularFunction("goToPreviousMorsel");
+		document.querySelector("div[class^=_header--prev]").click();
 	}
 });	
 
-function seekUdacity(seconds){
-	var scriptContent = `
-		${safeGetYoutubePlayer}
-		var time = player.getCurrentTime();
-		player.seekTo(time + ${seconds}, true)
-	`;
-	runRemoteScript(scriptContent);
-}
+// function callAngularFunction(functionName){
+// 	var scriptContent = `
+// 		angular.element(document.querySelector("[ng-click='${functionName}()']")).scope().${functionName}()
+// 	`;
+// 	runRemoteScript(scriptContent);
+// }
+
+// function seekUdacity(seconds){
+// 	var scriptContent = `
+// 		${safeGetYoutubePlayer}
+// 		var time = player.getCurrentTime();
+// 		player.seekTo(time + ${seconds}, true)
+// 	`;
+// 	runRemoteScript(scriptContent);
+//}
 
 function runRemoteScript(scriptContent){
 	var randomTagId = "_" + guidGenerator();
