@@ -69,7 +69,6 @@
 			"js" : ["udacity_pause_youtube_frame_content.js"],
 			"run_at" : "document_start",
 			"all_frames" : true
-
 		}
 	],
 
