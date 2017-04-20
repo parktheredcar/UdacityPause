@@ -29,9 +29,19 @@ if(document.referrer.startsWith("https://classroom.udacity.com")){
 				}
 			}
 			*/
+			/*
 			player = yt.player.getPlayerByElement("player");
 			if(player === null){
 				errMsg = "UdacityPause error: yt.player.getPlayerByElement returned null, something went wrong."
+			}
+			*/
+			if(!yt || !yt.player || !yt.player.utils || 
+				!yt.player.utils.VideoTagPool.instance ||
+				!yt.player.utils.VideoTagPool.instance.A ||
+				!yt.player.utils.VideoTagPool.instance.A.length){
+				errMsg = "Player not found";
+			}else{
+				player = yt.player.utils.VideoTagPool.instance.A[0];
 			}
 		}
 
@@ -62,12 +72,13 @@ if(document.referrer.startsWith("https://classroom.udacity.com")){
 		if(request.action === "udacity_pause_pause"){
 			var scriptContent = `
 				${safeGetYoutubePlayer}
-				var playerState = player.getPlayerState();
-				if(playerState === YT.PlayerState.PAUSED){
-					player.playVideo();
-				}else if(playerState === YT.PlayerState.PLAYING){
-					player.pauseVideo();
+				if(player.paused){
+					player.play();
+				}else{
+					player.pause();
 				}
+
+
 			`;
 			runRemoteScript(scriptContent);
 		}else if(request.action === "udacity_pause_forward"){
@@ -80,8 +91,8 @@ if(document.referrer.startsWith("https://classroom.udacity.com")){
 	function seekUdacity(seconds){
 		var scriptContent = `
 			${safeGetYoutubePlayer}
-			var time = player.getCurrentTime();
-			player.seekTo(time + ${seconds}, true)
+			var time = player.currentTime;
+			player.currentTime = time + ${seconds};
 		`;
 		runRemoteScript(scriptContent);
 	}
